@@ -1,0 +1,25 @@
+describe("Servers test (with setup and tear-down)", function() {
+  beforeEach(function () {
+    // initialization logic
+    serverNameInput.value = 'Alice';
+  });
+
+  it('should add a new server to "allServers"', function () {
+    submitServerInfo();
+
+    expect(Object.keys(allServers).length).toEqual(1);
+    expect(allServers['server' + serverId].serverName).toEqual('Alice');
+  });
+
+  it('should not add a new server with empty input', function () {
+    serverNameInput.value = '';
+    submitServerInfo();
+    expect(Object.keys(allServers).length).toEqual(0);
+  });
+
+  afterEach(function() {
+    serverId = 0;
+    serverTbody.innerHTML = '';
+    allServers = {};
+  });
+});
